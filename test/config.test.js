@@ -51,3 +51,9 @@ test("react exempts e2e directories from rules-of-hooks only", async () => {
   const rules = result.messages.map((m) => m.ruleId);
   assert.ok(!rules.includes("react-hooks/rules-of-hooks"), rules);
 });
+
+test("react exempts story render functions from rules-of-hooks", async () => {
+  const result = await lint(react, "demo.stories.tsx");
+  const rules = result.messages.map((m) => m.ruleId);
+  assert.ok(!rules.includes("react-hooks/rules-of-hooks"), rules);
+});

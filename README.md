@@ -19,9 +19,12 @@ both ignore generated output common to our repos (`dist`, `build`,
 `coverage`, Playwright reports, Storybook builds, Panda's `styled-system`
 output and `panda.config.ts`) plus `.storybook` and `.claude` directories.
 
-The react config switches `react-hooks/rules-of-hooks` off under `e2e`
-directories: Playwright fixtures take a callback named `use`, which the
-hooks plugin treats as the React 19 `use` hook.
+The react config switches `react-hooks/rules-of-hooks` off in two places
+where it misfires on established idioms: under `e2e` directories, where
+Playwright fixtures take a callback named `use` that the hooks plugin
+treats as the React 19 `use` hook, and in `*.stories.{ts,tsx}` files,
+whose `render` functions are components in practice but not
+component-cased.
 
 ## Usage
 
