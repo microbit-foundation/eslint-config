@@ -1,0 +1,57 @@
+{
+  "name": "@microbit/eslint-config",
+  "version": "0.0.0",
+  "description": "Shared ESLint config for Micro:bit Educational Foundation TypeScript projects",
+  "keywords": [
+    "eslint",
+    "eslintconfig"
+  ],
+  "type": "module",
+  "author": "Matt Hillsdon <matt.hillsdon@microbit.org>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microbit-foundation/eslint-config"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./react": "./react.js"
+  },
+  "files": [
+    "index.js",
+    "react.js",
+    "lib"
+  ],
+  "packageManager": "npm@11.18.0",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write --list-different .",
+    "format:check": "prettier --check .",
+    "test": "node --test \"test/*.test.js\"",
+    "ci": "npm run lint && npm run format:check && npm run test"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "typescript-eslint": "^8.69.0"
+  },
+  "peerDependencies": {
+    "eslint": "^9.7.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "eslint": "^9.7.0",
+    "globals": "^17.11.0",
+    "prettier": "3.9.6",
+    "react": "^19.0.0",
+    "typescript": "^5.9.0"
+  }
+}
