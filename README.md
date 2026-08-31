@@ -14,7 +14,14 @@ Two entry points:
   `eslint-plugin-react` (recommended + jsx-runtime) and
   `eslint-plugin-react-hooks`.
 
-Both apply only to TypeScript files (`.ts`, `.tsx`, `.mts`, `.cts`).
+Both apply only to TypeScript files (`.ts`, `.tsx`, `.mts`, `.cts`), and
+both ignore generated output common to our repos (`dist`, `build`,
+`coverage`, Playwright reports, Storybook builds, Panda's `styled-system`
+output and `panda.config.ts`) plus `.storybook` and `.claude` directories.
+
+The react config switches `react-hooks/rules-of-hooks` off under `e2e`
+directories: Playwright fixtures take a callback named `use`, which the
+hooks plugin treats as the React 19 `use` hook.
 
 ## Usage
 
@@ -31,8 +38,8 @@ import microbit from "@microbit/eslint-config/react";
 
 export default [
   {
-    // Project-specific ignores, e.g. generated output.
-    ignores: ["dist", "styled-system"],
+    // Project-specific ignores, e.g. build scripts kept in plain JS.
+    ignores: ["bin", "deployment.cjs"],
   },
   ...microbit,
   {

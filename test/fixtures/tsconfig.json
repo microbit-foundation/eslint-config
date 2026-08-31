@@ -8,5 +8,5 @@
     "lib": ["ES2020", "DOM"],
     "noEmit": true
   },
-  "include": ["*.ts", "*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx"]
 }

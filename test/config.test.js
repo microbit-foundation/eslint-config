@@ -45,3 +45,9 @@ test("react accepts idiomatic component code", async () => {
   const result = await lint(react, "react-valid.tsx");
   assert.deepEqual(result.messages, []);
 });
+
+test("react exempts e2e directories from rules-of-hooks only", async () => {
+  const result = await lint(react, "e2e/fixtures.tsx");
+  const rules = result.messages.map((m) => m.ruleId);
+  assert.ok(!rules.includes("react-hooks/rules-of-hooks"), rules);
+});
