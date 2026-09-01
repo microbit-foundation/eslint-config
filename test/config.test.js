@@ -56,6 +56,21 @@ test("react flags eslint-react issues but not naming conventions", async () => {
   );
 });
 
+test("react keeps use-state correctness checks but not setter naming", async () => {
+  const result = await lint(react, "react-plugin.tsx");
+  const messages = result.messages
+    .filter((message) => message.ruleId === "@eslint-react/use-state")
+    .map((message) => message.message);
+  assert.ok(
+    messages.some((message) => message.includes("lazy initial state")),
+    messages,
+  );
+  assert.ok(
+    !messages.some((message) => message.includes("setter should be named")),
+    messages,
+  );
+});
+
 test("react accepts idiomatic component code", async () => {
   const result = await lint(react, "react-valid.tsx");
   assert.deepEqual(result.messages, []);
