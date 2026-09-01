@@ -34,11 +34,26 @@ test("base accepts idiomatic code", async () => {
   assert.deepEqual(result.messages, []);
 });
 
-test("react flags hooks misuse but not unescaped entities", async () => {
+test("react flags hooks misuse", async () => {
   const result = await lint(react, "react-invalid.tsx");
   const rules = result.messages.map((m) => m.ruleId);
   assert.ok(rules.includes("react-hooks/rules-of-hooks"), rules);
-  assert.ok(!rules.includes("react/no-unescaped-entities"), rules);
+});
+
+test("react reports a hooks problem once, not once per plugin", async () => {
+  const result = await lint(react, "react-invalid.tsx");
+  const rules = result.messages.map((m) => m.ruleId);
+  assert.ok(!rules.includes("@eslint-react/rules-of-hooks"), rules);
+});
+
+test("react flags eslint-react issues but not naming conventions", async () => {
+  const result = await lint(react, "react-plugin.tsx");
+  const rules = result.messages.map((m) => m.ruleId);
+  assert.ok(rules.includes("@eslint-react/no-array-index-key"), rules);
+  assert.ok(
+    !rules.some((rule) => rule?.startsWith("@eslint-react/naming-convention-")),
+    rules,
+  );
 });
 
 test("react accepts idiomatic component code", async () => {
