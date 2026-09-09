@@ -31,7 +31,7 @@ jobs:
         if: github.event_name == 'release'
         with:
           name: npm-tarball
-          path: '*.tgz'
+          path: "*.tgz"
           if-no-files-found: error
           retention-days: 1
 
@@ -49,7 +49,7 @@ jobs:
           name: npm-tarball
       - uses: actions/setup-node@v6
         with:
-          node-version: '24.x'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: "24.x"
+          registry-url: "https://registry.npmjs.org"
       - run: npm install -g npm@${{ env.NPM_VERSION }} --registry=https://registry.npmjs.org
       - run: npm stage publish --allow-file=all ./*.tgz
