@@ -25,7 +25,7 @@
     "react.js",
     "lib"
   ],
-  "packageManager": "npm@11.18.0",
+  "packageManager": "npm@11.21.1",
   "engines": {
     "node": ">=22.0.0"
   },
